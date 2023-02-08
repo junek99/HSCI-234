@@ -11,22 +11,19 @@ def draw():
     draw_portrait(100,100)
 
     p5.push()
-    p5.translate(p5.mouseX, p5.mouseY)
+    p5.translate(p5.mouseX,p5.mouseY)
     draw_portrait(100,100)
     p5.pop()
-    
-   
+
 def draw_portrait(x,y):
     p5.fill(255,227,198)
     draw_base(100,100)
     draw_lips(100,110)
     draw_nose(100,110)
     p5.fill(255)
-    
     draw_eyes_R(100,110)
     draw_eyes_L(100,110)
     draw_eyebrows(100,110)
-    
 
 def draw_base(x,y):
     p5.push()
@@ -61,15 +58,14 @@ def draw_base(x,y):
     p5.pop()
 
     p5.push()
-    p5.translate(x+42,y+100)
+    p5.translate(x+42,y+100+p5.mouseY/140)
     p5.angleMode(p5.DEGREES)
     p5.scale(6)
     p5.strokeWeight(0.5)
     p5.arc(0,0,30,30,0,180)
     p5.pop()
-
     p5.push()
-    p5.translate(x+42,y+115)
+    p5.translate(x+42,y+115+p5.mouseY/160)
     p5.angleMode(p5.DEGREES)
     p5.scale(4)
     p5.strokeWeight(0.5)
@@ -78,15 +74,16 @@ def draw_base(x,y):
 
 def draw_eyebrows(x,y):
     p5.push()
-    p5.translate(x-40,y-90)
+    p5.translate(x-38,y-90+p5.mouseY/150)
     p5.fill(0)
     p5.quad(15,40,60,43,60,51,0,57)
     p5.pop()
     p5.push()
-    p5.translate(x+45,y-90)
+    p5.translate(x+45,y-90+p5.mouseY/150)
     p5.fill(0)
     p5.quad(15,43,60,40,75,57,15,51)
     p5.pop()
+
 
 def draw_eyes_L(x,y):
     p5.push()
@@ -112,7 +109,7 @@ def draw_eyes_L(x,y):
     p5.pop()
 
     p5.push()
-    p5.translate(x+85, y-1)
+    p5.translate(x+85+p5.mouseX/130, y-1+p5.mouseY/180)
     p5.angleMode(p5.DEGREES)  
     p5.rotate(340)
     p5.fill(0)
@@ -120,7 +117,7 @@ def draw_eyes_L(x,y):
     p5.pop()
 
     p5.push()
-    p5.translate(x+92, y-3)
+    p5.translate(x+92+p5.mouseX/130, y-3+p5.mouseY/180)
     p5.angleMode(p5.DEGREES)  
     p5.rotate(20)
     p5.fill(255)
@@ -152,7 +149,7 @@ def draw_eyes_R(x,y):
     p5.pop()
 
     p5.push()
-    p5.translate(x+3, y-1)
+    p5.translate(x+3+p5.mouseX/130, y-1+p5.mouseY/180)
     p5.angleMode(p5.DEGREES)  
     p5.rotate(20)
     p5.fill(0)
@@ -160,13 +157,12 @@ def draw_eyes_R(x,y):
     p5.pop()
 
     p5.push()
-    p5.translate(x+10, y-3)
+    p5.translate(x+10+p5.mouseX/130, y-3+p5.mouseY/180)
     p5.angleMode(p5.DEGREES)  
     p5.rotate(20)
     p5.fill(255)
     p5.ellipse(0, 0, 7, 5)
     p5.pop()
-
 
 def draw_lips(x,y):
     p5.angleMode(p5.RADIANS)
