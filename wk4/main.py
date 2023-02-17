@@ -32,23 +32,18 @@ def draw_frame():
 
 def draw_wheel():
     
-    for i in range(6):
-        x = rect_x-55 + i*22
-        y = rect_y+40
-        d=22
-        
-        
-        global angle    
-        p5.ellipseMode(p5.CENTER)
-        p5.push()
-        p5.translate(0,0)
-        p5.rotate(p5.radians(angle))
-        angle += 0 
-        p5.fill(255)
-        p5.ellipse(x,y,d,d)
-        p5.fill(100)
-        p5.arc(x,y,d,d,0.4,4.71)
-        p5.pop()
+    global angle    
+    p5.ellipseMode(p5.CENTER)
+    p5.push()
+    p5.translate(0,0)
+    angle += 0 
+    p5.rotate(p5.radians(angle))
+    p5.fill(255)
+    p5.ellipse(rect_x-55,rect_y+40,22,22)
+    p5.fill(100)
+    p5.arc(rect_x-55,rect_y+40,22,22,0.4,4.71)
+    p5.pop()
+
 
 def draw_scope():
     p5.rectMode(p5.CENTER)
@@ -100,5 +95,15 @@ def draw():
     draw_barrel()
     draw_body()
     draw_frame()
-    draw_wheel()
+    
+    for i in range(6):
+        d = 0 + i*22
+        z = 0
+
+        p5.push()
+        p5.translate(d, z)
+        draw_wheel()
+        p5.pop()
+
+        
     draw_scope()
