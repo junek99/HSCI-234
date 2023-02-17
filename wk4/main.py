@@ -9,20 +9,20 @@ speed = 10
 angle = 0 
 
 
-def draw_barrel():
+def draw_barrel(): #barrel
     p5.rectMode(p5.CENTER)
     p5.fill(75,83,32)
     p5.stroke(0)
     p5.rect(rect_x+50,rect_y-23,80,20)
 
-def draw_body():
+def draw_body(): #body
     p5.rectMode(p5.CENTER)
     p5.fill(75,74,32)
     p5.stroke(75,74,32)
     p5.rect(rect_x,rect_y+15,90,35)
     p5.rect(rect_x-10,rect_y-23,70,40)
 
-def draw_frame():
+def draw_frame(): #wheelframe
     p5.rectMode(p5.CENTER)
     p5.fill(0)
     p5.stroke(0)
@@ -30,22 +30,22 @@ def draw_frame():
     p5.arc(rect_x-60,rect_y+40,30,30,1.57,4.71)
     p5.arc(rect_x+60,rect_y+40,30,30,4.71,1.57)
 
-def draw_wheel():
-    
+def draw_wheel(): #wheel
+
     global angle    
     p5.ellipseMode(p5.CENTER)
     p5.push()
-    p5.translate(0,0)
+    p5.translate(rect_x-55,rect_y+40)
     angle += 0 
     p5.rotate(p5.radians(angle))
     p5.fill(255)
-    p5.ellipse(rect_x-55,rect_y+40,22,22)
+    p5.ellipse(0,0,22,22)
     p5.fill(100)
-    p5.arc(rect_x-55,rect_y+40,22,22,0.4,4.71)
+    p5.arc(0,0,22,22,0.4,4.71)
     p5.pop()
 
 
-def draw_scope():
+def draw_scope():#scope follows mouse
     p5.rectMode(p5.CENTER)
     p5.push()
     p5.translate(p5.mouseX,p5.mouseY)
@@ -79,24 +79,27 @@ def draw():
     global angle    
 
     
-    if(p5.keyIsPressed == True):
+    if(p5.keyIsPressed == True):  # Moving tank+wheel
         if(p5.key == 'a'):  # left 
-            rect_x = rect_x - 1
-            angle = angle -1
+            rect_x = rect_x - 2
+            angle = angle -2
         elif(p5.key == 'd'):  # right
-            rect_x = rect_x + 1
-            angle = angle +1
+            rect_x = rect_x + 2
+            angle = angle +2
 
         elif(p5.key == 'w'):  # up 
-            rect_y = rect_y - 1
+            rect_y = rect_y-2
+            angle = angle +2
         elif(p5.key == 's'):  # down 
-            rect_y = rect_y + 1
+            rect_y = rect_y+2
+            angle = angle -2
+
 
     draw_barrel()
     draw_body()
     draw_frame()
     
-    for i in range(6):
+    for i in range(6): # Wheel variable
         d = 0 + i*22
         z = 0
 
