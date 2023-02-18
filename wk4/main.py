@@ -8,13 +8,19 @@ x = 0
 speed = 10
 angle = 0 
 
+r=160
+t=128
+
+def draw_shell():
+    p5.ellipse(r, t, 20, 20)
 
 def draw_barrel(): #barrel
     p5.rectMode(p5.CENTER)
     p5.fill(75,83,32)
     p5.stroke(0)
     p5.rect(rect_x+50,rect_y-23,80,20)
-
+    p5.rect(rect_x+80,rect_y-23,25,35)
+    
 def draw_body(): #body
     p5.rectMode(p5.CENTER)
     p5.fill(75,74,32)
@@ -69,12 +75,13 @@ def draw():
     p5.text(str(p5.mouseX) + ", " + str(p5.mouseY), 10, 20)
 
 
-    if (p5.mouseIsPressed == True):
+    if(p5.mouseIsPressed == True):
         if (p5.mouseButton == p5.LEFT):
-            global x
-            x = x + speed  # increment x
-            p5.ellipse(p5.mouseX+x, p5.mouseY, 20, 20)
+            global x, r, t
+            x = x + speed 
+            r=r+x
 
+            
     global rect_x, rect_y
     global angle    
 
@@ -110,3 +117,4 @@ def draw():
 
         
     draw_scope()
+    draw_shell()
