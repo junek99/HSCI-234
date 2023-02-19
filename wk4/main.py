@@ -1,6 +1,13 @@
 import js
 p5 = js.window
 
+print('key instruction')
+print('all keys in lowercase')
+print('wasd = up left down right')
+print('e = reload')
+print('hold e = barrel follows scope')
+print('left click = fire shell')
+
 rect_x = 80
 rect_y = 150
 p=90
@@ -130,7 +137,7 @@ def draw():
 
     if(p5.keyIsPressed == True): # barrel angle
         if(p5.key == 'e'):
-            angle_barrel = anglebarrel = p5.mouseX/1.1+p5.mouseY/1.1
+            angle_barrel = angle_barrel = p5.mouseX/1.1+p5.mouseY/1.1
             x = 0 
             r=40           
             p5.push()
