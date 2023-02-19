@@ -1,26 +1,37 @@
 import js
 p5 = js.window
 
+
 rect_x = 80
 rect_y = 150
+
+p=90
+o=118
 
 x = 0
 speed = 10
 angle = 0 
+angle_barrel=0
 
-r=160
-t=128
-
-def draw_shell():
-    p5.ellipse(r, t, 20, 20)
+r=70
+t=9 
 
 def draw_barrel(): #barrel
-    p5.rectMode(p5.CENTER)
+
+    global angle_barrel
+    p5.rectMode(p5.CORNER)
+    p5.push()
+    p5.translate(p,o)
+    angle_barrel += 0 
+    p5.rotate(p5.radians(angle_barrel))
+    p5.fill(0)
+    p5.ellipse(r, t, 20, 20)
     p5.fill(75,83,32)
     p5.stroke(0)
-    p5.rect(rect_x+50,rect_y-23,80,20)
-    p5.rect(rect_x+80,rect_y-23,25,35)
-    
+    p5.rect(0,0,80,20)
+    p5.rect(58,-8,25,35)
+    p5.pop()
+
 def draw_body(): #body
     p5.rectMode(p5.CENTER)
     p5.fill(75,74,32)
@@ -82,39 +93,29 @@ def draw():
             r=r+x
 
             
-    global rect_x, rect_y
-    global angle    
+    global rect_x,rect_y,p,o
+    global angle, angle_barrel 
 
     
     if(p5.keyIsPressed == True):  # Moving tank+wheel
         if(p5.key == 'a'):  # left 
             rect_x = rect_x - 2
+            p=p-2
             angle = angle -2
         elif(p5.key == 'd'):  # right
             rect_x = rect_x + 2
             angle = angle +2
+            p=p+2
 
         elif(p5.key == 'w'):  # up 
             rect_y = rect_y-2
             angle = angle +2
+            o=o-2
         elif(p5.key == 's'):  # down 
             rect_y = rect_y+2
             angle = angle -2
+            o=o+2
 
-
-    draw_barrel()
-    draw_body()
-    draw_frame()
-    
-    for i in range(6): # Wheel variable
-        d = 0 + i*22
-        z = 0
-
-        p5.push()
-        p5.translate(d, z)
-        draw_wheel()
-        p5.pop()
-
-        
-    draw_scope()
-    draw_shell()
+    if(p5.keyIsPressed == True):
+        if(p5.key == 'e'):
+            angle_barrel = anglebarrel = p5.mouseX/1.1+p5.mouseY/1.1
