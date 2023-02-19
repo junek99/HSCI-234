@@ -3,17 +3,28 @@ p5 = js.window
 
 rect_x = 80
 rect_y = 150
-
 p=90
 o=118
-
+g=90
+l=118
 x = 0
-speed = 10
+speed = 25
 angle = 0 
 angle_barrel=0
 
 r=70
-t=9 
+t=10 
+
+def draw_shell(): #shell
+    global angle_barrel
+    p5.push()
+    p5.translate(g,l)
+    angle_barrel += 0 
+    p5.rotate(p5.radians(angle_barrel))
+    p5.fill(0)
+    p5.ellipse(r, t, 25, 20)
+    p5.pop()
+
 
 def draw_barrel(): #barrel
 
@@ -23,8 +34,6 @@ def draw_barrel(): #barrel
     p5.translate(p,o)
     angle_barrel += 0 
     p5.rotate(p5.radians(angle_barrel))
-    p5.fill(0)
-    p5.ellipse(r, t, 20, 20)
     p5.fill(75,83,32)
     p5.stroke(0)
     p5.rect(0,0,80,20)
@@ -92,7 +101,7 @@ def draw():
             r=r+x
 
             
-    global rect_x,rect_y,p,o
+    global rect_x,rect_y,p,o,g,l
     global angle, angle_barrel 
 
     
@@ -100,26 +109,36 @@ def draw():
         if(p5.key == 'a'):  # left 
             rect_x = rect_x - 2
             p=p-2
+            g=g-2
             angle = angle -2
         elif(p5.key == 'd'):  # right
             rect_x = rect_x + 2
             angle = angle +2
             p=p+2
+            g=g+2
 
         elif(p5.key == 'w'):  # up 
             rect_y = rect_y-2
             angle = angle +2
             o=o-2
+            l=l-2
         elif(p5.key == 's'):  # down 
             rect_y = rect_y+2
             angle = angle -2
             o=o+2
+            l=l+2
 
-    if(p5.keyIsPressed == True):
+    if(p5.keyIsPressed == True): # barrel angle
         if(p5.key == 'e'):
             angle_barrel = anglebarrel = p5.mouseX/1.1+p5.mouseY/1.1
-
-
+            x = 0 
+            r=40           
+            p5.push()
+            p5.translate(0,0)
+            draw_shell()
+            p5.pop()
+            
+    draw_shell()
     draw_barrel()
     draw_body()
     draw_frame()
@@ -132,6 +151,5 @@ def draw():
         p5.translate(d, z)
         draw_wheel()
         p5.pop()
-
 
     draw_scope()
