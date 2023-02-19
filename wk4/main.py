@@ -1,7 +1,6 @@
 import js
 p5 = js.window
 
-
 rect_x = 80
 rect_y = 150
 
@@ -119,3 +118,20 @@ def draw():
     if(p5.keyIsPressed == True):
         if(p5.key == 'e'):
             angle_barrel = anglebarrel = p5.mouseX/1.1+p5.mouseY/1.1
+
+
+    draw_barrel()
+    draw_body()
+    draw_frame()
+
+    for i in range(6): # Wheel variable
+        d = 0 + i*22
+        z = 0
+
+        p5.push()
+        p5.translate(d, z)
+        draw_wheel()
+        p5.pop()
+
+
+    draw_scope()
