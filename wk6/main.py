@@ -3,36 +3,55 @@ p5 = js.window
 
 program_timer = p5.millis()
 program_state = 'state1'
-x=0
-speed = 0.75
 
 def setup():
     p5.createCanvas(300, 300)  
     print('finished setup..')
 
-def draw_ice():
+def draw_grenade():
     p5.push()
-    p5.translate(110,50)
-    p5.fill(0,0,255)
-    p5.quad(0,60,30,90,30,140,0,110)
-    p5.quad(30,90,60,60,60,110,30,140)
-    p5.quad(0,60,30,30,60,60,30,90)
+    p5.translate(146,150)
+    p5.stroke(0)
+    p5.ellipse(35,-55,38,38)
+    p5.fill(255)
+    p5.ellipse(35,-55,33,33)
+    p5.fill(49,56,69)
+    p5.stroke(49,56,69)
+    p5.ellipse(4,0,100,100)
+    p5.rect(-10,-70,30,80)
+    p5.stroke(0)
+    p5.rotate(p5.radians(46))
+    p5.rect(-65,-70,30,34)
+    p5.rotate(p5.radians(90))
+    p5.rect(-70,10,13,45)
     p5.pop()
 
-def draw_water():
+
+
+def draw_grenade_ex():
     p5.push()
-    p5.translate(120,165)
-    p5.stroke(0,0,255)
-    p5.fill(0,0,255)
-    p5.ellipse(0,0,102,22)
-    p5.ellipse(0,20,52,22)
-    p5.ellipse(35,15,52,22)
-    p5.ellipse(40,8,80,18)
+    p5.translate(146,150)
+    p5.stroke(250,190,0)
+    p5.fill(250,190,0)
+    p5.ellipse(35,-55,38,38)
+    p5.fill(255)
+    p5.ellipse(35,-55,33,33)
+    p5.fill(250,0,0)
+    p5.stroke(250,109,0)
+    p5.ellipse(4,0,100,100)
+    p5.fill(250,109,0)
+    p5.ellipse(4,0,80,80)
+    p5.rect(-10,-70,30,80)
+    p5.stroke(250,190,0)
+    p5.rotate(p5.radians(46))
+    p5.rect(-65,-70,30,34)
+    p5.rotate(p5.radians(90))
+    p5.rect(-70,10,13,45)
     p5.pop()
 
 def draw_something():
     p5.push()
-    p5.translate(120,165)
+    p5.translate(150,150)
     p5.ellipse(0,0,100,100)
     p5.pop()
 
@@ -50,11 +69,12 @@ def draw():
     p5.text('seconds: ' + str(sec), 10, 35)
 
     if program_state == 'state1':
-        draw_ice()
+        draw_grenade()
     elif program_state == 'state2':
-        draw_water()
+        draw_grenade_ex()
     elif program_state == 'state3':
         draw_something()
+  
 
     # Check if it is time to switch to state 2
     if program_state == 'state1' and msec - program_timer > 2000:
@@ -77,11 +97,8 @@ def keyReleased(event):
     pass
 
 def mousePressed(event):
-    global program_state,x,speed
+    global program_state
     if program_state == 'state1':
         program_state = 'state3'
     elif program_state == 'state2':
         program_state = 'state3'
-
-    if program_state == 'state3':
-        draw_something()
