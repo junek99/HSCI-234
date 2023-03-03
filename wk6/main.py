@@ -61,22 +61,26 @@ def draw():
         draw_water()
     elif program_state == 'state3':
         draw_something()
+  
+
 
 
 
 
 def keyPressed(event):
     print('keyPressed.. ' + str(p5.key))
+    pass
+
+
+def keyReleased(event):
+    pass
+
+def mousePressed(event):
     global program_state
     if program_state == 'state1':
         program_state = 'state3'
 
-def keyReleased(event):
-    print('keyReleased.. ' + str(p5.key))
-
-def mousePressed(event):
-    print('mousePressed..')
 
 
 def mouseReleased(event):
-    print('mouseReleased..')
+    pass
