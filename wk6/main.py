@@ -3,7 +3,8 @@ p5 = js.window
 
 program_timer = p5.millis()
 program_state = 'state1'
-
+x=0
+speed = 0.75
 
 def setup():
     p5.createCanvas(300, 300)  
@@ -48,39 +49,39 @@ def draw():
     p5.text('milliseconds: ' + str(msec), 10, 20)
     p5.text('seconds: ' + str(sec), 10, 35)
 
-
-
-    if(p5.millis() % 2000 < 500):
-        program_state = 'state1'
-    else:
-        program_state = 'state2'
-
     if program_state == 'state1':
         draw_ice()
     elif program_state == 'state2':
         draw_water()
     elif program_state == 'state3':
         draw_something()
-  
 
-
-
-
+    # Check if it is time to switch to state 2
+    if program_state == 'state1' and msec - program_timer > 2000:
+        program_state = 'state2'
+        program_timer = msec
 
 def keyPressed(event):
-    print('keyPressed.. ' + str(p5.key))
-    pass
-
+    global program_state, program_timer
+    if p5.key == '1':
+        program_state = 'state1'
+        program_timer = p5.millis()
+    elif p5.key == '2':
+        program_state = 'state2'
+        program_timer = p5.millis()
+    elif p5.key == '3':
+        program_state = 'state3'
+        program_timer = p5.millis()
 
 def keyReleased(event):
     pass
 
 def mousePressed(event):
-    global program_state
+    global program_state,x,speed
     if program_state == 'state1':
         program_state = 'state3'
+    elif program_state == 'state2':
+        program_state = 'state3'
 
-
-
-def mouseReleased(event):
-    pass
+    if program_state == 'state3':
+        draw_something()
