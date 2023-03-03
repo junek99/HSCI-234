@@ -49,10 +49,59 @@ def draw_grenade_ex():
     p5.rect(-70,10,13,45)
     p5.pop()
 
-def draw_something():
+def draw_explosion():
+    
     p5.push()
-    p5.translate(150,150)
-    p5.ellipse(0,0,100,100)
+    p5.translate(146,150)
+    p5.scale(4)
+    p5.stroke(250,0,0)
+    p5.strokeWeight(5)
+    p5.line(0,0,-20,-20)
+    p5.line(0,0,20,-15)
+    p5.line(-10,10,35,-10)
+    p5.line(-10,10,-27,5)
+    p5.line(-10,10,-19,9)
+    p5.line(-10,10,25,-10)
+    p5.line(-5,11,30,3)
+    p5.pop()
+    
+    p5.push()
+    p5.translate(146,150)
+    p5.fill(250,0,0)
+    p5.stroke(250,0,0)
+    p5.ellipse(4,30,140,60)
+    p5.ellipse(20,10,100,80)
+    p5.ellipse(-25,10,80,50)
+    p5.ellipse(-15,-10,50,50)
+    p5.ellipse(10,-25,45,40)
+    p5.ellipse(34,20,90,40)
+    p5.pop()
+
+    p5.push()
+    p5.translate(146,160)
+    p5.fill(250,190,0)
+    p5.stroke(250,190,0)
+    p5.scale(0.7)
+    p5.ellipse(4,30,140,60)
+    p5.ellipse(20,10,100,80)
+    p5.ellipse(-25,10,80,50)
+    p5.ellipse(-15,-10,50,50)
+    p5.ellipse(10,-25,45,40)
+    p5.ellipse(34,20,90,40)
+    p5.pop()
+
+    p5.push()
+    p5.translate(146,150)
+    p5.scale(3)
+    p5.stroke(250,190,0)
+    p5.strokeWeight(5)
+    p5.line(0,0,-20,-20)
+    p5.line(0,0,20,-15)
+    p5.line(-10,10,35,-10)
+    p5.line(-10,10,-27,5)
+    p5.line(-10,10,-19,9)
+    p5.line(-10,10,25,-10)
+    p5.line(-5,11,30,3)
     p5.pop()
 
 
@@ -73,7 +122,7 @@ def draw():
     elif program_state == 'state2':
         draw_grenade_ex()
     elif program_state == 'state3':
-        draw_something()
+        draw_explosion()
   
 
     # Check if it is time to switch to state 2
