@@ -8,7 +8,7 @@ def setup():
     p5.createCanvas(300, 300)  
     print('finished setup..')
 
-def draw_grenade():
+def draw_grenade(): # state 1
     p5.push()
     p5.translate(146,150)
     p5.stroke(0)
@@ -27,15 +27,14 @@ def draw_grenade():
     p5.pop()
 
 
-
-def draw_grenade_ex():
+def draw_grenade_ex(): # state 2
     p5.push()
     p5.translate(146,150)
     p5.stroke(250,190,0)
     p5.fill(250,190,0)
-    p5.ellipse(35,-55,38,38)
+    p5.ellipse(65,-55,38,38)
     p5.fill(255)
-    p5.ellipse(35,-55,33,33)
+    p5.ellipse(65,-55,33,33)
     p5.fill(250,0,0)
     p5.stroke(250,109,0)
     p5.ellipse(4,0,100,100)
@@ -49,7 +48,18 @@ def draw_grenade_ex():
     p5.rect(-70,10,13,45)
     p5.pop()
 
-def draw_explosion():
+    p5.push()
+    p5.translate(62,250)
+    p5.fill(0)
+    p5.scale(3)
+    p5.text('WARNING',0.5,0.5)
+    p5.fill(250,0,0)
+    p5.text('WARNING',0,0)
+    p5.pop()
+
+
+
+def draw_explosion(): # state 3
     
     p5.push()
     p5.translate(146,150)
@@ -104,6 +114,20 @@ def draw_explosion():
     p5.line(-5,11,30,3)
     p5.pop()
 
+    p5.push()
+    p5.translate(45,250)
+    p5.fill(0)
+    p5.scale(3)
+    p5.text('BANGGGGG',0.5,0.5)
+    p5.fill(250,0,0)
+    p5.text('BANGGGGG',0,0)
+    p5.pop()
+
+    p5.push()
+    p5.translate(115,270)
+    p5.fill(0)
+    p5.text('Press 1 to return',0,0)
+    p5.pop()
 
 def draw():
     p5.background(255)           
@@ -124,13 +148,15 @@ def draw():
     elif program_state == 'state3':
         draw_explosion()
   
-
-    # Check if it is time to switch to state 2
-    if program_state == 'state1' and msec - program_timer > 2000:
+    if program_state == 'state1' and msec - program_timer > 2000: # Heat grenade after 2 sec
         program_state = 'state2'
         program_timer = msec
 
-def keyPressed(event):
+    if program_state == 'state2' and msec - program_timer > 6000: # Explode grenade after 6 sec
+        program_state = 'state3'
+        program_timer = msec
+
+def keyPressed(event): # returning keys
     global program_state, program_timer
     if p5.key == '1':
         program_state = 'state1'
@@ -145,9 +171,12 @@ def keyPressed(event):
 def keyReleased(event):
     pass
 
-def mousePressed(event):
+def mousePressed(event): # Explode grenade by mouse press
     global program_state
     if program_state == 'state1':
         program_state = 'state3'
     elif program_state == 'state2':
         program_state = 'state3'
+
+def mouseReleased(event):
+    pass
