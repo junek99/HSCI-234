@@ -24,12 +24,50 @@ class Player:
 
     # method to draw a Point object:
     def draw(self):
-        p5.fill(0)
+        p5.fill(255)
         p5.push()
         p5.translate(self.x, self.y)
-        p5.ellipse(0, 0, 5, 5)
-        p5.text('(' + str(self.x) + ',' + str(self.y) + ')', 10, 10)
+        p5.rect(0,0,40,40)
         p5.pop()
+
+        p5.fill(255)
+        p5.push()
+        p5.translate(self.x, self.y-15)
+        p5.rect(0,0,40,20)
+        p5.pop()
+
+        p5.fill(255)
+        p5.push()
+        p5.translate(self.x+4,self.y+10)
+        p5.rect(0,0,10,10)
+        p5.pop()
+
+        p5.fill(255)
+        p5.push()
+        p5.translate(self.x+26, self.y+10)
+        p5.rect(0,0,10,10)
+        p5.pop()
+
+        p5.fill(255)
+        p5.push()
+        p5.translate(self.x+7, self.y+25)
+        p5.rect(0,0,27,8)
+        p5.pop()
+
+        p5.fill(255)
+        p5.push()
+        p5.translate(self.x+28, self.y+40)
+        p5.rect(0,0,18,10)
+        p5.pop()
+
+        p5.fill(255)
+        p5.push()
+        p5.translate(self.x-6, self.y+40)
+        p5.rect(0,0,18,10)
+        p5.pop()
+
+        
+
 
 # create an instance of Point object and assign it to variable:
 player_1 = Player()  # instantiate an object with no arguments
