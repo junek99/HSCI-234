@@ -1,8 +1,10 @@
 import js
 p5 = js.window
 
+
 program_state = 'START'
 score = 0
+
 
 class Space:
     def __init__(self, x=150, y=250):
@@ -10,6 +12,7 @@ class Space:
         self.y = y  
         self.speed = 1
         self.direction = 1 # From right to left
+
 
     def draw(self):
         self.x -= self.speed 
@@ -22,7 +25,7 @@ class Space:
             p5.fill(112,116,165)
             p5.rect(0,0,10,300)
             p5.pop()
-            
+    
 class Spaceship:  
     def __init__(self, x=150, y=250):
         self.img = p5.loadImage('img_test.png')
@@ -36,6 +39,7 @@ class Spaceship:
         p5.translate(self.x, self.y)
         p5.image(self.img, 0, 0)
         p5.pop()
+
 
 class Asteroids:
     def __init__(self, x = 0, y = 0):
@@ -57,12 +61,14 @@ asteroids = Asteroids(300,150)
 spaceship = Spaceship(50,150)
 
 
+
 def setup():
     p5.createCanvas(300, 300) 
     print('finished setup') 
     
 def draw():
     global program_state, score
+
 
     if program_state == 'START': # Start Screen
         p5.background(0)  
@@ -95,20 +101,44 @@ def draw():
         asteroids.draw()
         spaceship.draw()
 
+
         p5.textFont('Comic Sans MS', 10)
         p5.text('Score: ' + str(score), 10, 20)
-        
+
+
+        d = p5.dist(spaceship.x, spaceship.y, asteroids.x, asteroids.y)
+        if(d < 20):  
+            print('ASTEROIIIIID IMPACCCCCTTTT')
+            program_state = 'GAMEOVER'
+       
+
+    elif(program_state == 'GAMEOVER'):
+        p5.background(0)  
+        p5.textFont('Comic Sans MS', 30)
+        p5.fill(255)
+        p5.text('GAME OVER', 60, 150)
+
+
 def keyPressed(event):
-    global program_state
+    global program_state, score, space, asteroids, spaceship
     if p5.keyCode == p5.SHIFT:
         if program_state == 'START':
             program_state = 'PLAY'  
-
+    elif p5.keyCode == p5.BACKSPACE:
+        if program_state == 'GAMEOVER':
+            program_state = 'PLAY'
+            score = 0
+            space = Space(0,0)
+            asteroids = Asteroids(300,150)
+            spaceship = Spaceship(50,150)
+            
 def keyReleased(event):
     pass
 
+
 def mousePressed(event):
     pass
+
 
 def mouseReleased(event):
     pass
