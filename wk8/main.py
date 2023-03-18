@@ -19,6 +19,27 @@ class Space:
         if self.x < -300: # '-' because it moves from right to left   
             self.x = -150 
         for i in range(12): 
+            d = self.x + i*50import js
+p5 = js.window
+
+
+program_state = 'START'
+score = 0
+
+
+class Space:
+    def __init__(self, x=150, y=250):
+        self.x = x  
+        self.y = y  
+        self.speed = 1
+        self.direction = 1 # From right to left
+
+
+    def draw(self):
+        self.x -= self.speed 
+        if self.x < -300: # '-' because it moves from right to left   
+            self.x = -150 
+        for i in range(12): 
             d = self.x + i*50
             p5.push()
             p5.translate(d, self.y)
@@ -117,6 +138,8 @@ def draw():
         p5.textFont('Comic Sans MS', 30)
         p5.fill(255)
         p5.text('GAME OVER', 60, 150)
+        p5.textFont('Comic Sans MS', 15)
+        p5.text('press BACKSPACE to play', 60, 190)
 
 
 def keyPressed(event):
