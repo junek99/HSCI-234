@@ -51,8 +51,6 @@ class Asteroids:
         p5.rect(0,0, self.size, self.size)
         p5.pop()
         self.x -= self.speed * self.direction
-
-
         
 space = Space(0,0) 
 asteroids = Asteroids(300,150)
@@ -70,9 +68,13 @@ def draw():
         p5.background(0)  
         p5.fill(255)
         p5.textFont('Comic Sans MS', 30)
-        p5.text('Asteroid Attack', 35, 100)
+        p5.text('Asteroid Attack', 35, 130)
+        p5.textFont('Comic Sans MS', 13)
+        p5.text('By June Kwak', 110, 160)
         p5.textFont('Comic Sans MS', 18)
-        p5.text('click SHIFT to start', 65, 180)
+        p5.text('click SHIFT to start', 65, 210)
+        
+        
     elif program_state == 'PLAY': # Game Play
         p5.background(141,143,181)  
         if p5.keyIsPressed:
