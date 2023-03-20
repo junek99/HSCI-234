@@ -28,7 +28,9 @@ class Space:
     
 class Spaceship:  
     def __init__(self, x=150, y=250):
-        self.img = p5.loadImage('img_test.png')
+        self.img1 = p5.loadImage('img_test.png');  
+        self.img2 = p5.loadImage('img_test2.png');
+        self.img3 = p5.loadImage('img_test3.png');
         self.x = x  
         self.y = y  
         self.speed = 3
@@ -37,7 +39,7 @@ class Spaceship:
     def draw(self):
         p5.push()
         p5.translate(self.x, self.y)
-        p5.image(self.img, 0, 0)
+        p5.image(self.img1, 0, 0)
         p5.pop()
 
 
