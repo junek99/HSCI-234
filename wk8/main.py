@@ -20,7 +20,7 @@ class Goal:
         p5.translate(self.x,self.y)
         p5.fill(0)
         p5.rect(5,5,10,10)
-        p5.pop(
+        p5.pop()
 
         p5.push()
         p5.translate(280,280)
