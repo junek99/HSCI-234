@@ -9,6 +9,16 @@ class Goal:
     def __init__(self, x=150, y=250):
         self.x = x  
         self.y = y
+        self.img = p5.loadImage('img_test3.png')
+        self.timer = p5.millis()
+    
+    def update(self):
+        if(p5.millis() > self.timer + 500):
+            if(self.x < p5.width - self.img.width/2):
+                self.x += 5
+            else:
+                self.x = self.img.width/2
+            self.timer = p5.millis()  # update timer
 
     def draw(self):
         p5.push()
@@ -17,10 +27,10 @@ class Goal:
         p5.pop()
 
         p5.push()
-        p5.translate(self.x,self.y)
-        p5.fill(0)
-        p5.rect(5,5,10,10)
+        p5.translate(self.x, self.y)
+        p5.image(self.img, 5, 5)
         p5.pop()
+        
 
         p5.push()
         p5.translate(280,280)
@@ -74,11 +84,14 @@ class Asteroids:
         self.direction = 1  
      
     def draw(self):
+        
         p5.push()
         p5.translate(self.x, self.y)
         p5.rect(0,0, self.size, self.size)
         p5.pop()
         self.x -= self.speed * self.direction
+        if self.x < 0: # '-' because it moves from right to left   
+            self.x = 320
         
 space = Space(0,0) 
 asteroids = Asteroids(300,150)
@@ -125,8 +138,8 @@ def draw():
         space.draw()
         asteroids.draw()
         spaceship.draw()
+        goal.update()
         goal.draw()
-
 
         p5.textFont('Comic Sans MS', 10)
         p5.text('Score: ' + str(score), 10, 20)
