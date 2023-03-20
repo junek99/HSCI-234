@@ -5,6 +5,28 @@ p5 = js.window
 program_state = 'START'
 score = 0
 
+class Goal:
+    def __init__(self, x=150, y=250):
+        self.x = x  
+        self.y = y
+
+    def draw(self):
+        p5.push()
+        p5.translate(0,0)
+        p5.rect(0,280,300,20)
+        p5.pop()
+
+        p5.push()
+        p5.translate(self.x,self.y)
+        p5.fill(0)
+        p5.rect(5,5,10,10)
+        p5.pop(
+
+        p5.push()
+        p5.translate(280,280)
+        p5.fill(255,0,0)
+        p5.rect(0,5,10,10)
+        p5.pop()
 
 class Space:
     def __init__(self, x=150, y=250):
@@ -48,7 +70,7 @@ class Asteroids:
         self.x = x  
         self.y = y  
         self.size = p5.random(10, 30)
-        self.speed = p5.random(1, 5) 
+        self.speed = p5.random(0.5, 2) 
         self.direction = 1  
      
     def draw(self):
@@ -61,6 +83,7 @@ class Asteroids:
 space = Space(0,0) 
 asteroids = Asteroids(300,150)
 spaceship = Spaceship(50,150)
+goal = Goal(0,280)
 
 
 
@@ -102,6 +125,7 @@ def draw():
         space.draw()
         asteroids.draw()
         spaceship.draw()
+        goal.draw()
 
 
         p5.textFont('Comic Sans MS', 10)
