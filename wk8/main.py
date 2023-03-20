@@ -163,10 +163,8 @@ def keyPressed(event):
 def keyReleased(event):
     pass
 
-
 def mousePressed(event):
     pass
-
 
 def mouseReleased(event):
     pass
