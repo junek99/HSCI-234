@@ -68,7 +68,6 @@ class Spaceship:
         self.speed = 3
 
         
-        
     def draw(self):
         p5.push()
         p5.translate(self.x, self.y)
@@ -110,8 +109,6 @@ space = Space(0,0)
 asteroids = Asteroids(300,150)
 spaceship = Spaceship(50,150)
 goal = Goal(0,280)
-
-
 
 def setup():
     p5.createCanvas(300, 300) 
@@ -172,17 +169,9 @@ def draw():
         p5.textFont('Comic Sans MS', 15)
         p5.text('press BACKSPACE to play', 60, 190)
 
-    elif(program_state == 'SURVIVED'):
-        p5.background(0)  
-        p5.textFont('Comic Sans MS', 30)
-        p5.fill(255)
-        p5.text('SURVIVED!', 60, 150)
-        p5.textFont('Comic Sans MS', 15)
-        p5.text('Enjoy Your Life', 60, 190)
-
 
 def keyPressed(event):
-    global program_stat, score, space, asteroids, spaceship
+    global program_state, score, space, asteroids, spaceship
     if p5.keyCode == p5.SHIFT:
         if program_state == 'START':
             program_state = 'PLAY'  
