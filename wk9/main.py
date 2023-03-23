@@ -66,6 +66,7 @@ class Spaceship:
         self.x = x  
         self.y = y  
         self.speed = 3
+
         
         
     def draw(self):
@@ -73,6 +74,18 @@ class Spaceship:
         p5.translate(self.x, self.y)
         p5.image(self.img1, 0, 0)
         p5.pop()
+
+        if p5.keyCode == p5.UP_ARROW:
+            self.img1 = p5.loadImage('img_ship2.png')
+        
+        elif p5.keyCode == p5.DOWN_ARROW:
+            self.img1 = p5.loadImage('img_ship3.png')
+
+        elif p5.keyCode == p5.LEFT_ARROW:
+            self.img1 = p5.loadImage('img_ship.png')
+        
+        elif p5.keyCode == p5.RIGHT_ARROW:
+            self.img1 = p5.loadImage('img_ship.png')
 
 
 class Asteroids:
