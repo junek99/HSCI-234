@@ -42,21 +42,19 @@ class Space:
     def __init__(self, x=150, y=250):
         self.x = x  
         self.y = y  
+        self.img = p5.loadImage('space.png')
         self.speed = 1
         self.direction = 1 # From right to left
 
 
     def draw(self):
         self.x -= self.speed 
-        if self.x < -300: # '-' because it moves from right to left   
-            self.x = -150 
-        for i in range(12): 
-            d = self.x + i*50
-            p5.push()
-            p5.translate(d, self.y)
-            p5.fill(112,116,165)
-            p5.rect(0,0,10,300)
-            p5.pop()
+        if self.x < -290: # '-' because it moves from right to left   
+            self.x = 0
+        p5.push()
+        p5.translate(self.x, self.y)
+        p5.image(self.img, 0, 0)
+        p5.pop()
     
 class Spaceship:  
     def __init__(self, x=150, y=250):
