@@ -89,19 +89,24 @@ class Asteroids:
     def __init__(self, x = 0, y = 0):
         self.x = x  
         self.y = y  
-        self.size = p5.random(10, 30)
+        self.img = p5.loadImage('asteroid.png')
+        self.size = p5.random(1, 5)
         self.speed = p5.random(0.5, 2) 
         self.direction = 1  
      
+     
     def draw(self):
-        
+    
         p5.push()
         p5.translate(self.x, self.y)
-        p5.rect(0,0, self.size, self.size)
+        p5.scale(self.size)
+        p5.image(self.img, 0, 0,)
         p5.pop()
         self.x -= self.speed * self.direction
         if self.x < 0: # '-' because it moves from right to left   
             self.x = 320
+            self.size = p5.random(1, 5)
+            self.speed = p5.random(0.5, 3) 
         
 space = Space(0,0) 
 asteroids = Asteroids(300,150)
