@@ -15,7 +15,7 @@ class Goal:
     def update(self):
         if(p5.millis() > self.timer + 500):
             if(self.x < p5.width - self.img.width/2):
-                self.x += 5
+                self.x += 2
             else:
                 self.x = self.img.width/2
             self.timer = p5.millis()  # update timer
@@ -172,9 +172,17 @@ def draw():
         p5.textFont('Comic Sans MS', 15)
         p5.text('press BACKSPACE to play', 60, 190)
 
+    elif(program_state == 'SURVIVED'):
+        p5.background(0)  
+        p5.textFont('Comic Sans MS', 30)
+        p5.fill(255)
+        p5.text('SURVIVED!', 60, 150)
+        p5.textFont('Comic Sans MS', 15)
+        p5.text('Enjoy Your Life', 60, 190)
+
 
 def keyPressed(event):
-    global program_state, score, space, asteroids, spaceship
+    global program_stat, score, space, asteroids, spaceship
     if p5.keyCode == p5.SHIFT:
         if program_state == 'START':
             program_state = 'PLAY'  
