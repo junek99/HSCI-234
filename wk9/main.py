@@ -4,8 +4,6 @@ p5 = js.window
 
 program_state = 'START'
 score = 0
-p5.imageMode(p5.CENTER)
-
 
     
 class Spaceship:  
@@ -37,6 +35,7 @@ class Spaceship:
             self.img1 = p5.loadImage('img_ship.png')
 class Sprite:
     def __init__(self, x = 0, y = 0):
+        p5.imageMode(p5.CENTER)
         self.x = x  
         self.y = p5.random(0,p5.height)  
         self.img = p5.loadImage('asteroid.png')
@@ -134,7 +133,6 @@ class Asteroidsf(Sprite):
             self.speed = p5.random(2, 3.5)
             increase_score()
 
-p5.imageMode(p5.CORNER)
 
 class Goal:
     def __init__(self, x=0, y=0):
@@ -169,7 +167,7 @@ class Goal:
         p5.pop()
 
 class Space:
-    def __init__(self, x=150, y=250):
+    def __init__(self, x=0,y=0):
         self.x = x  
         self.y = y  
         self.img = p5.loadImage('space.png')
@@ -179,14 +177,14 @@ class Space:
 
     def draw(self):
         self.x -= self.speed 
-        if self.x < -290: # '-' because it moves from right to left   
+        if self.x < -150: # '-' because it moves from right to left   
             self.x = 0
         p5.push()
         p5.translate(self.x, self.y)
-        p5.image(self.img, 0, 0)
+        p5.image(self.img, 290, 140)
         p5.pop()
-        
-    
+
+
 space = Space(0,0) 
 asteroidsa = Asteroidsa(300,p5.random(0,280))
 asteroidsb = Asteroidsb(300,p5.random(20,260))
@@ -238,12 +236,14 @@ def draw():
                     spaceship.x += spaceship.speed
         
         space.draw()
+    
         asteroidsa.draw()
         asteroidsb.draw()
         asteroidsc.draw()
         asteroidse.draw()
         asteroidsd.draw()
         asteroidsf.draw()
+       
         spaceship.draw()
         goal.update()
         goal.draw()
@@ -253,35 +253,34 @@ def draw():
 
 
         d = p5.dist(spaceship.x, spaceship.y, asteroidsa.x, asteroidsa.y)
-        if(d < 20):  
+        if(d < 15*asteroidsa.size/2):  
             print('ASTEROIIIIID IMPACCCCCTTTT')
             program_state = 'GAMEOVER'
-
         d = p5.dist(spaceship.x, spaceship.y, asteroidsb.x, asteroidsb.y)
-        if(d < 20):  
+        if(d < 15*asteroidsb.size/2):  
             print('ASTEROIIIIID IMPACCCCCTTTT')
             program_state = 'GAMEOVER'
 
         d = p5.dist(spaceship.x, spaceship.y, asteroidsc.x, asteroidsc.y)
-        if(d < 20):  
+        if(d < 15*asteroidsc.size/2):   
             print('ASTEROIIIIID IMPACCCCCTTTT')
             program_state = 'GAMEOVER'
 
         d = p5.dist(spaceship.x, spaceship.y, asteroidsd.x, asteroidsd.y)
-        if(d < 20):  
+        if(d < 15*asteroidsd.size/2):  
             print('ASTEROIIIIID IMPACCCCCTTTT')
             program_state = 'GAMEOVER'
             
         d = p5.dist(spaceship.x, spaceship.y, asteroidse.x, asteroidse.y)
-        if(d < 20):  
+        if(d < 15*asteroidse.size/2):  
             print('ASTEROIIIIID IMPACCCCCTTTT')
             program_state = 'GAMEOVER'
 
         d = p5.dist(spaceship.x, spaceship.y, asteroidsf.x, asteroidsf.y)
-        if(d < 20):  
+        if(d < 15*asteroidsf.size/2):   
             print('ASTEROIIIIID IMPACCCCCTTTT')
             program_state = 'GAMEOVER'
-
+        
        
 
     elif(program_state == 'GAMEOVER'):
