@@ -83,28 +83,86 @@ class Spaceship:
         
         elif p5.keyCode == p5.RIGHT_ARROW:
             self.img1 = p5.loadImage('img_ship.png')
-
-
-class Asteroids:
+class Sprite:
     def __init__(self, x = 0, y = 0):
         self.x = x  
         self.y = y  
         self.img = p5.loadImage('asteroid.png')
-        self.size = p5.random(1, 5)
-        self.speed = p5.random(1, 3) 
-        self.direction = 1  
-     
-     
+        self.size = p5.random(3, 5)
+        self.speed = p5.random(1, 2) 
+        self.direction = 1
+
+class Asteroidsa(Sprite):    
     def draw(self):
-    
         p5.push()
         p5.translate(self.x, self.y)
         p5.scale(self.size)
         p5.image(self.img, 0, 0,)
         p5.pop()
         self.x -= self.speed * self.direction
-        if self.x < 0: # '-' because it moves from right to left   
+        if self.x < -20: # '-' because it moves from right to left   
             self.x = 320
+            self.y = p5.random(0,p5.height)
+            self.size = p5.random(0.8, 2)
+            self.speed = p5.random(2, 4)
+            increase_score()
+            
+class Asteroidsb(Sprite):
+    def draw(self):
+        p5.push()
+        p5.translate(self.x, self.y)
+        p5.scale(self.size)
+        p5.image(self.img, 0, 0,)
+        p5.pop()
+        self.x -= self.speed * self.direction
+        if self.x < -20: # '-' because it moves from right to left   
+            self.x = 320
+            self.y = p5.random(0,p5.height)
+            self.size = p5.random(1.5, 4)
+            self.speed = p5.random(1, 3)
+            increase_score()
+
+class Asteroidsc(Sprite):
+    def draw(self):
+        p5.push()
+        p5.translate(self.x, self.y)
+        p5.scale(self.size)
+        p5.image(self.img, 0, 0,)
+        p5.pop()
+        self.x -= self.speed * self.direction
+        if self.x < -20: # '-' because it moves from right to left   
+            self.x = 320
+            self.y = p5.random(0,p5.height)
+            self.size = p5.random(2, 5)
+            self.speed = p5.random(1.3, 3.5)
+            increase_score()
+
+class Asteroidsd(Sprite):
+    def draw(self):
+        p5.push()
+        p5.translate(self.x, self.y)
+        p5.scale(self.size)
+        p5.image(self.img, 0, 0,)
+        p5.pop()
+        self.x -= self.speed * self.direction
+        if self.x < -20: # '-' because it moves from right to left   
+            self.x = 320
+            self.y = p5.random(0,p5.height)
+            self.size = p5.random(1, 5)
+            self.speed = p5.random(1, 5)
+            increase_score()
+
+class Asteroidse(Sprite):
+    def draw(self):
+        p5.push()
+        p5.translate(self.x, self.y)
+        p5.scale(self.size)
+        p5.image(self.img, 0, 0,)
+        p5.pop()
+        self.x -= self.speed * self.direction
+        if self.x < -20: # '-' because it moves from right to left   
+            self.x = 320
+            self.y = p5.random(0,p5.height)
             self.size = p5.random(1, 5)
             self.speed = p5.random(0.5, 3)
             increase_score()
@@ -112,7 +170,12 @@ class Asteroids:
         
         
 space = Space(0,0) 
-asteroids = Asteroids(300,150)
+asteroidsa = Asteroidsa(300,p5.random(0,300))
+asteroidsb = Asteroidsb(300,p5.random(20,280))
+asteroidsc = Asteroidsa(300,p5.random(80,200))
+asteroidsd = Asteroidsb(300,p5.random(50,150))
+asteroidse = Asteroidsa(300,p5.random(50,250))
+
 spaceship = Spaceship(50,150)
 goal = Goal(0,280)
 
@@ -156,7 +219,11 @@ def draw():
                     spaceship.x += spaceship.speed
         
         space.draw()
-        asteroids.draw()
+        asteroidsa.draw()
+        asteroidsb.draw()
+        asteroidsc.draw()
+        asteroidse.draw()
+        asteroidsd.draw()
         spaceship.draw()
         goal.update()
         goal.draw()
@@ -165,10 +232,31 @@ def draw():
         p5.text('Score: ' + str(score), 10, 20)
 
 
-        d = p5.dist(spaceship.x, spaceship.y, asteroids.x, asteroids.y)
+        d = p5.dist(spaceship.x, spaceship.y, asteroidsa.x, asteroidsa.y)
         if(d < 20):  
             print('ASTEROIIIIID IMPACCCCCTTTT')
             program_state = 'GAMEOVER'
+
+        d = p5.dist(spaceship.x, spaceship.y, asteroidsb.x, asteroidsb.y)
+        if(d < 20):  
+            print('ASTEROIIIIID IMPACCCCCTTTT')
+            program_state = 'GAMEOVER'
+
+        d = p5.dist(spaceship.x, spaceship.y, asteroidsc.x, asteroidsc.y)
+        if(d < 20):  
+            print('ASTEROIIIIID IMPACCCCCTTTT')
+            program_state = 'GAMEOVER'
+
+        d = p5.dist(spaceship.x, spaceship.y, asteroidsd.x, asteroidsd.y)
+        if(d < 20):  
+            print('ASTEROIIIIID IMPACCCCCTTTT')
+            program_state = 'GAMEOVER'
+            
+        d = p5.dist(spaceship.x, spaceship.y, asteroidse.x, asteroidse.y)
+        if(d < 20):  
+            print('ASTEROIIIIID IMPACCCCCTTTT')
+            program_state = 'GAMEOVER'
+
        
 
     elif(program_state == 'GAMEOVER'):
@@ -181,7 +269,7 @@ def draw():
 
 
 def keyPressed(event):
-    global program_state, score, space, asteroids, spaceship
+    global program_state, score, space, asteroidsa , asteroidsb, spaceship
     if p5.keyCode == p5.SHIFT:
         if program_state == 'START':
             program_state = 'PLAY'  
@@ -190,8 +278,13 @@ def keyPressed(event):
             program_state = 'PLAY'
             score = 0
             space = Space(0,0)
-            asteroids = Asteroids(300,150)
+            asteroidsa = Asteroidsa(300,p5.random(0,300))
+            asteroidsb = Asteroidsb(300,p5.random(20,280))
+            asteroidsc = Asteroidsa(300,p5.random(80,200))
+            asteroidsd = Asteroidsb(300,p5.random(50,150))
+            asteroidse = Asteroidsa(300,p5.random(50,250))
             spaceship = Spaceship(50,150)
+
             
 def keyReleased(event):
     pass
