@@ -167,14 +167,30 @@ class Asteroidse(Sprite):
             self.speed = p5.random(0.5, 3)
             increase_score()
 
+class Asteroidsf(Sprite):
+    def draw(self):
+        p5.push()
+        p5.translate(self.x, self.y)
+        p5.scale(self.size)
+        p5.image(self.img, 0, 0,)
+        p5.pop()
+        self.x -= self.speed * self.direction
+        if self.x < -20: # '-' because it moves from right to left   
+            self.x = 320
+            self.y = p5.random(0,p5.height)
+            self.size = p5.random(2.5, 5)
+            self.speed = p5.random(2, 3.5)
+            increase_score()
+
         
         
 space = Space(0,0) 
 asteroidsa = Asteroidsa(300,p5.random(0,300))
-asteroidsb = Asteroidsb(300,p5.random(20,280))
-asteroidsc = Asteroidsa(300,p5.random(80,200))
-asteroidsd = Asteroidsb(300,p5.random(50,150))
+asteroidsb = Asteroidsb(300,p5.random(20,290))
+asteroidsc = Asteroidsa(300,p5.random(80,250))
+asteroidsd = Asteroidsb(300,p5.random(10,150))
 asteroidse = Asteroidsa(300,p5.random(50,250))
+asteroidsf = Asteroidsa(300,p5.random(110,220))
 
 spaceship = Spaceship(50,150)
 goal = Goal(0,280)
@@ -224,6 +240,7 @@ def draw():
         asteroidsc.draw()
         asteroidse.draw()
         asteroidsd.draw()
+        asteroidsf.draw()
         spaceship.draw()
         goal.update()
         goal.draw()
@@ -257,6 +274,11 @@ def draw():
             print('ASTEROIIIIID IMPACCCCCTTTT')
             program_state = 'GAMEOVER'
 
+        d = p5.dist(spaceship.x, spaceship.y, asteroidsf.x, asteroidsf.y)
+        if(d < 20):  
+            print('ASTEROIIIIID IMPACCCCCTTTT')
+            program_state = 'GAMEOVER'
+
        
 
     elif(program_state == 'GAMEOVER'):
@@ -269,7 +291,7 @@ def draw():
 
 
 def keyPressed(event):
-    global program_state, score, space, asteroidsa , asteroidsb, spaceship
+    global program_state, score, space, asteroidsa , asteroidsb, asteroidsc, asteroidsd, asteroidse, asteroidsf, spaceship
     if p5.keyCode == p5.SHIFT:
         if program_state == 'START':
             program_state = 'PLAY'  
@@ -279,16 +301,16 @@ def keyPressed(event):
             score = 0
             space = Space(0,0)
             asteroidsa = Asteroidsa(300,p5.random(0,300))
-            asteroidsb = Asteroidsb(300,p5.random(20,280))
-            asteroidsc = Asteroidsa(300,p5.random(80,200))
-            asteroidsd = Asteroidsb(300,p5.random(50,150))
-            asteroidse = Asteroidsa(300,p5.random(50,250))
+            asteroidsb = Asteroidsb(300,p5.random(20,290))
+            asteroidsc = Asteroidsc(300,p5.random(80,250))
+            asteroidsd = Asteroidsd(300,p5.random(10,150))
+            asteroidse = Asteroidse(300,p5.random(50,250))
+            asteroidsf = Asteroidsa(300,p5.random(110,220))
             spaceship = Spaceship(50,150)
 
-            
+
 def keyReleased(event):
     pass
-
 def mousePressed(event):
     pass
 
