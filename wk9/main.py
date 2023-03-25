@@ -198,8 +198,11 @@ goal = Goal(0,280)
 
 def increase_score():
     global score
-    score += 10
-    
+    if asteroidsa.size and asteroidsb.size and asteroidsc.size and asteroidsd.size and asteroidse.size and asteroidsf.size >= 3.5:
+        score += 25
+    else:
+        score += 10
+        
 def setup():
     p5.createCanvas(300, 300) 
     print('finished setup') 
