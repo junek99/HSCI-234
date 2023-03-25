@@ -312,8 +312,10 @@ def keyPressed(event):
             asteroidse = Asteroidse(300,p5.random(50,250))
             asteroidsf = Asteroidsf(300,p5.random(110,220))
             spaceship = Spaceship(50,150)
-     
-
+            goal.x = 0 
+            goal.y = 280            
+            
+    
 def keyReleased(event):
     pass
 def mousePressed(event):
