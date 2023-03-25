@@ -86,10 +86,10 @@ class Spaceship:
 class Sprite:
     def __init__(self, x = 0, y = 0):
         self.x = x  
-        self.y = y  
+        self.y = p5.random(0,p5.height)  
         self.img = p5.loadImage('asteroid.png')
-        self.size = p5.random(3, 5)
-        self.speed = p5.random(1, 2) 
+        self.size = p5.random(1, 5)
+        self.speed = p5.random(1, 3) 
         self.direction = 1
 
 class Asteroidsa(Sprite):    
@@ -183,14 +183,14 @@ class Asteroidsf(Sprite):
             increase_score()
 
         
-        
+    
 space = Space(0,0) 
 asteroidsa = Asteroidsa(300,p5.random(0,300))
 asteroidsb = Asteroidsb(300,p5.random(20,290))
-asteroidsc = Asteroidsa(300,p5.random(80,250))
-asteroidsd = Asteroidsb(300,p5.random(10,150))
-asteroidse = Asteroidsa(300,p5.random(50,250))
-asteroidsf = Asteroidsa(300,p5.random(110,220))
+asteroidsc = Asteroidsc(300,p5.random(80,250))
+asteroidsd = Asteroidsd(300,p5.random(10,150))
+asteroidse = Asteroidse(300,p5.random(50,250))
+asteroidsf = Asteroidsf(300,p5.random(110,220))
 
 spaceship = Spaceship(50,150)
 goal = Goal(0,280)
@@ -305,7 +305,7 @@ def keyPressed(event):
             asteroidsc = Asteroidsc(300,p5.random(80,250))
             asteroidsd = Asteroidsd(300,p5.random(10,150))
             asteroidse = Asteroidse(300,p5.random(50,250))
-            asteroidsf = Asteroidsa(300,p5.random(110,220))
+            asteroidsf = Asteroidsf(300,p5.random(110,220))
             spaceship = Spaceship(50,150)
 
 
