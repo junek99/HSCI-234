@@ -91,7 +91,7 @@ class Asteroids:
         self.y = y  
         self.img = p5.loadImage('asteroid.png')
         self.size = p5.random(1, 5)
-        self.speed = p5.random(0.5, 2) 
+        self.speed = p5.random(1, 3) 
         self.direction = 1  
      
      
@@ -106,13 +106,20 @@ class Asteroids:
         if self.x < 0: # '-' because it moves from right to left   
             self.x = 320
             self.size = p5.random(1, 5)
-            self.speed = p5.random(0.5, 3) 
+            self.speed = p5.random(0.5, 3)
+            increase_score()
+
+        
         
 space = Space(0,0) 
 asteroids = Asteroids(300,150)
 spaceship = Spaceship(50,150)
 goal = Goal(0,280)
 
+def increase_score():
+    global score
+    score += 10
+    
 def setup():
     p5.createCanvas(300, 300) 
     print('finished setup') 
