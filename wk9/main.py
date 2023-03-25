@@ -148,6 +148,10 @@ class Goal:
             else:
                 self.x = self.img.width/2
             self.timer = p5.millis()  # update timer
+       
+        if self.x >= 280:
+            global program_state
+            program_state = 'SURVIVED'
 
     def draw(self):
         p5.push()
@@ -213,13 +217,19 @@ def draw():
 
     if program_state == 'START': # Start Screen
         p5.background(0)  
+        asteroidsa.draw()
         p5.fill(255)
         p5.textFont('Comic Sans MS', 30)
         p5.text('Asteroid Attack', 35, 130)
         p5.textFont('Comic Sans MS', 13)
         p5.text('By June Kwak', 110, 160)
         p5.textFont('Comic Sans MS', 18)
-        p5.text('click SHIFT to start', 65, 210)
+        p5.text('press SHIFT to start', 65, 210)
+        p5.push()
+        p5.translate(0,-380)
+        p5.scale(3)
+        spaceship.draw()
+        p5.pop()
         
         
     elif program_state == 'PLAY': # Game Play
@@ -290,9 +300,19 @@ def draw():
         p5.background(0)  
         p5.textFont('Comic Sans MS', 30)
         p5.fill(255)
-        p5.text('GAME OVER', 60, 150)
+        p5.text('GAME OVER', 65, 200)
         p5.textFont('Comic Sans MS', 15)
-        p5.text('press BACKSPACE to play', 60, 190)
+        p5.text('press SHIFT to replay', 75, 240)
+
+    elif(program_state == 'SURVIVED'):
+        p5.background(0)  
+        p5.textFont('Comic Sans MS', 30)
+        p5.fill(255)
+        p5.text('YOU SURVIVED', 40, 200)
+        p5.textFont('Comic Sans MS', 20)
+        p5.text('Total Score:'+ str(score), 85, 238)
+        p5.textFont('Comic Sans MS', 15)
+        p5.text('press SHIFT to return title', 55, 270)
 
 
 def keyPressed(event):
@@ -300,8 +320,8 @@ def keyPressed(event):
     if p5.keyCode == p5.SHIFT:
         if program_state == 'START':
             program_state = 'PLAY'  
-    elif p5.keyCode == p5.BACKSPACE:
-        if program_state == 'GAMEOVER':
+        
+        elif program_state == 'GAMEOVER':
             program_state = 'PLAY'
             score = 0
             space = Space(0,0)
@@ -313,7 +333,21 @@ def keyPressed(event):
             asteroidsf = Asteroidsf(300,p5.random(110,220))
             spaceship = Spaceship(50,150)
             goal.x = 0 
-            goal.y = 280            
+            goal.y = 280 
+        
+        elif program_state == 'SURVIVED':
+            program_state = 'START'
+            score = 0
+            space = Space(0,0)
+            asteroidsa = Asteroidsa(300,p5.random(0,280))
+            asteroidsb = Asteroidsb(300,p5.random(20,260))
+            asteroidsc = Asteroidsc(300,p5.random(80,240))
+            asteroidsd = Asteroidsd(300,p5.random(10,150))
+            asteroidse = Asteroidse(300,p5.random(50,250))
+            asteroidsf = Asteroidsf(300,p5.random(110,220))
+            spaceship = Spaceship(50,150)
+            goal.x = 0 
+            goal.y = 280 
             
     
 def keyReleased(event):
