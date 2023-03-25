@@ -4,57 +4,9 @@ p5 = js.window
 
 program_state = 'START'
 score = 0
-
-class Goal:
-    def __init__(self, x=150, y=250):
-        self.x = x  
-        self.y = y
-        self.img = p5.loadImage('img_test3.png')
-        self.timer = p5.millis()
-    
-    def update(self):
-        if(p5.millis() > self.timer + 500):
-            if(self.x < p5.width - self.img.width/2):
-                self.x += 2
-            else:
-                self.x = self.img.width/2
-            self.timer = p5.millis()  # update timer
-
-    def draw(self):
-        p5.push()
-        p5.translate(0,0)
-        p5.rect(0,280,300,20)
-        p5.pop()
-
-        p5.push()
-        p5.translate(self.x, self.y)
-        p5.image(self.img, 5, 5)
-        p5.pop()
-        
-
-        p5.push()
-        p5.translate(280,280)
-        p5.fill(255,0,0)
-        p5.rect(0,5,10,10)
-        p5.pop()
-
-class Space:
-    def __init__(self, x=150, y=250):
-        self.x = x  
-        self.y = y  
-        self.img = p5.loadImage('space.png')
-        self.speed = 1
-        self.direction = 1 # From right to left
+p5.imageMode(p5.CENTER)
 
 
-    def draw(self):
-        self.x -= self.speed 
-        if self.x < -290: # '-' because it moves from right to left   
-            self.x = 0
-        p5.push()
-        p5.translate(self.x, self.y)
-        p5.image(self.img, 0, 0)
-        p5.pop()
     
 class Spaceship:  
     def __init__(self, x=150, y=250):
@@ -182,12 +134,63 @@ class Asteroidsf(Sprite):
             self.speed = p5.random(2, 3.5)
             increase_score()
 
+p5.imageMode(p5.CORNER)
+
+class Goal:
+    def __init__(self, x=0, y=0):
+        self.x = x  
+        self.y = y
+        self.img = p5.loadImage('img_test3.png')
+        self.timer = p5.millis()
+    
+    def update(self):
+        if(p5.millis() > self.timer + 500):
+            if(self.x < p5.width - self.img.width/2):
+                self.x += 2
+            else:
+                self.x = self.img.width/2
+            self.timer = p5.millis()  # update timer
+
+    def draw(self):
+        p5.push()
+        p5.translate(0,0)
+        p5.rect(0,280,300,20)
+        p5.pop()
+
+        p5.push()
+        p5.translate(self.x, self.y)
+        p5.image(self.img, 5, 5)
+        p5.pop()
+        
+        p5.push()
+        p5.translate(280,280)
+        p5.fill(255,0,0)
+        p5.rect(0,5,10,10)
+        p5.pop()
+
+class Space:
+    def __init__(self, x=150, y=250):
+        self.x = x  
+        self.y = y  
+        self.img = p5.loadImage('space.png')
+        self.speed = 1
+        self.direction = 1 # From right to left
+
+
+    def draw(self):
+        self.x -= self.speed 
+        if self.x < -290: # '-' because it moves from right to left   
+            self.x = 0
+        p5.push()
+        p5.translate(self.x, self.y)
+        p5.image(self.img, 0, 0)
+        p5.pop()
         
     
 space = Space(0,0) 
-asteroidsa = Asteroidsa(300,p5.random(0,300))
-asteroidsb = Asteroidsb(300,p5.random(20,290))
-asteroidsc = Asteroidsc(300,p5.random(80,250))
+asteroidsa = Asteroidsa(300,p5.random(0,280))
+asteroidsb = Asteroidsb(300,p5.random(20,260))
+asteroidsc = Asteroidsc(300,p5.random(80,240))
 asteroidsd = Asteroidsd(300,p5.random(10,150))
 asteroidse = Asteroidse(300,p5.random(50,250))
 asteroidsf = Asteroidsf(300,p5.random(110,220))
@@ -300,14 +303,14 @@ def keyPressed(event):
             program_state = 'PLAY'
             score = 0
             space = Space(0,0)
-            asteroidsa = Asteroidsa(300,p5.random(0,300))
-            asteroidsb = Asteroidsb(300,p5.random(20,290))
-            asteroidsc = Asteroidsc(300,p5.random(80,250))
+            asteroidsa = Asteroidsa(300,p5.random(0,280))
+            asteroidsb = Asteroidsb(300,p5.random(20,260))
+            asteroidsc = Asteroidsc(300,p5.random(80,240))
             asteroidsd = Asteroidsd(300,p5.random(10,150))
             asteroidse = Asteroidse(300,p5.random(50,250))
             asteroidsf = Asteroidsf(300,p5.random(110,220))
             spaceship = Spaceship(50,150)
-
+     
 
 def keyReleased(event):
     pass
