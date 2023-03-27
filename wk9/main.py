@@ -4,7 +4,7 @@ p5 = js.window
 
 program_state = 'START'
 score = 0
-
+font1 = p5.loadFont('VCR_OSD_MONO.ttf')
     
 class Spaceship:  
     def __init__(self, x=150, y=250):
@@ -138,7 +138,7 @@ class Goal:
     def __init__(self, x=0, y=0):
         self.x = x  
         self.y = y
-        self.img = p5.loadImage('img_test3.png')
+        self.img = p5.loadImage('img_goal.png')
         self.timer = p5.millis()
     
     def update(self):
@@ -219,12 +219,12 @@ def draw():
         p5.background(0)  
         asteroidsa.draw()
         p5.fill(255)
-        p5.textFont('Comic Sans MS', 30)
-        p5.text('Asteroid Attack', 35, 130)
-        p5.textFont('Comic Sans MS', 13)
-        p5.text('By June Kwak', 110, 160)
-        p5.textFont('Comic Sans MS', 18)
-        p5.text('press SHIFT to start', 65, 210)
+        p5.textFont(font1, 28)
+        p5.text('Asteroid Attack', 30, 130)
+        p5.textFont(font1, 13)
+        p5.text('By June Kwak', 112, 165)
+        p5.textFont(font1, 18)
+        p5.text('press SHIFT to start', 50, 210)
         p5.push()
         p5.translate(0,-380)
         p5.scale(3)
@@ -261,8 +261,8 @@ def draw():
         goal.update()
         goal.draw()
 
-        p5.textFont('Comic Sans MS', 10)
-        p5.text('Score: ' + str(score), 10, 20)
+        p5.textFont(font1, 12)
+        p5.text('Score:' + str(score), 10, 20)
 
 
         d = p5.dist(spaceship.x, spaceship.y, asteroidsa.x, asteroidsa.y)
@@ -298,21 +298,21 @@ def draw():
 
     elif(program_state == 'GAMEOVER'):
         p5.background(0)  
-        p5.textFont('Comic Sans MS', 30)
+        p5.textFont(font1, 30)
         p5.fill(255)
-        p5.text('GAME OVER', 65, 200)
-        p5.textFont('Comic Sans MS', 15)
-        p5.text('press SHIFT to replay', 75, 240)
+        p5.text('GAME OVER', 70, 200)
+        p5.textFont(font1, 15)
+        p5.text('press SHIFT to replay', 57, 240)
 
     elif(program_state == 'SURVIVED'):
         p5.background(0)  
-        p5.textFont('Comic Sans MS', 30)
+        p5.textFont(font1, 30)
         p5.fill(255)
-        p5.text('YOU SURVIVED', 40, 200)
-        p5.textFont('Comic Sans MS', 20)
-        p5.text('Total Score:'+ str(score), 85, 238)
-        p5.textFont('Comic Sans MS', 15)
-        p5.text('press SHIFT to return title', 55, 270)
+        p5.text('YOU SURVIVED', 45, 200)
+        p5.textFont(font1, 20)
+        p5.text('Total Score:'+ str(score), 63, 238)
+        p5.textFont(font1, 15)
+        p5.text('press SHIFT to return title', 27, 270)
 
 
 def keyPressed(event):
