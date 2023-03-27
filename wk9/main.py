@@ -100,7 +100,7 @@ class Asteroidsd(Sprite):
             self.x = 320
             self.y = p5.random(0,p5.height)
             self.size = p5.random(1, 3)
-            self.speed = p5.random(1, 4)
+            self.speed = p5.random(1, 3)
             increase_score()
 
 class Asteroidse(Sprite):
@@ -130,7 +130,7 @@ class Asteroidsf(Sprite):
             self.x = 320
             self.y = p5.random(0,p5.height)
             self.size = p5.random(2.5, 5)
-            self.speed = p5.random(2, 3.5)
+            self.speed = p5.random(2, 3)
             increase_score()
 
 
@@ -156,17 +156,24 @@ class Goal:
     def draw(self):
         p5.push()
         p5.translate(0,0)
+        p5.fill(57,63,110)
         p5.rect(0,280,300,20)
         p5.pop()
 
         p5.push()
+        p5.translate(0,0)
+        p5.fill(255)
+        p5.rect(0,288,300,5)
+        p5.pop()
+
+        p5.push()
         p5.translate(self.x, self.y)
-        p5.image(self.img, 5, 5)
+        p5.image(self.img, 5, 10)
         p5.pop()
         
         p5.push()
         p5.translate(280,280)
-        p5.fill(255,0,0)
+        p5.fill(75,68,230)
         p5.rect(0,5,10,10)
         p5.pop()
 
