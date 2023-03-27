@@ -13,7 +13,7 @@ class Spaceship:
         self.img3 = p5.loadImage('img_ship3.png');
         self.x = x  
         self.y = y  
-        self.speed = 3
+        self.speed = 2.5
 
         
     def draw(self):
@@ -40,7 +40,7 @@ class Sprite:
         self.y = p5.random(0,p5.height)  
         self.img = p5.loadImage('asteroid.png')
         self.size = p5.random(1, 5)
-        self.speed = p5.random(1, 3) 
+        self.speed = p5.random(1, 2.5) 
         self.direction = 1
 
 class Asteroidsa(Sprite):    
@@ -55,7 +55,7 @@ class Asteroidsa(Sprite):
             self.x = 320
             self.y = p5.random(0,p5.height)
             self.size = p5.random(0.8, 2)
-            self.speed = p5.random(2, 4)
+            self.speed = p5.random(1.5, 3)
             increase_score()
             
 class Asteroidsb(Sprite):
@@ -70,7 +70,7 @@ class Asteroidsb(Sprite):
             self.x = 320
             self.y = p5.random(0,p5.height)
             self.size = p5.random(1.5, 4)
-            self.speed = p5.random(1, 3)
+            self.speed = p5.random(0.5, 2.5)
             increase_score()
 
 class Asteroidsc(Sprite):
@@ -85,7 +85,7 @@ class Asteroidsc(Sprite):
             self.x = 320
             self.y = p5.random(0,p5.height)
             self.size = p5.random(2, 5)
-            self.speed = p5.random(1.3, 3.5)
+            self.speed = p5.random(1, 3.1)
             increase_score()
 
 class Asteroidsd(Sprite):
@@ -99,8 +99,8 @@ class Asteroidsd(Sprite):
         if self.x < -20: # '-' because it moves from right to left   
             self.x = 320
             self.y = p5.random(0,p5.height)
-            self.size = p5.random(1, 5)
-            self.speed = p5.random(1, 5)
+            self.size = p5.random(1, 3)
+            self.speed = p5.random(1, 4)
             increase_score()
 
 class Asteroidse(Sprite):
@@ -115,7 +115,7 @@ class Asteroidse(Sprite):
             self.x = 320
             self.y = p5.random(0,p5.height)
             self.size = p5.random(1, 5)
-            self.speed = p5.random(0.5, 3)
+            self.speed = p5.random(0.5, 2)
             increase_score()
 
 class Asteroidsf(Sprite):
