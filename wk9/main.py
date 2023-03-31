@@ -5,7 +5,9 @@ p5 = js.window
 program_state = 'START'
 score = 0
 font1 = p5.loadFont('VCR_OSD_MONO.ttf')
-    
+img1 = p5.loadImage('img_gameover.png');  # load image data to img1
+img2 = p5.loadImage('img_survive.png')
+
 class Spaceship:  
     def __init__(self, x=150, y=250):
         self.img1 = p5.loadImage('img_ship.png');  
@@ -14,7 +16,6 @@ class Spaceship:
         self.x = x  
         self.y = y  
         self.speed = 2.5
-
         
     def draw(self):
         p5.push()
@@ -33,7 +34,8 @@ class Spaceship:
         
         elif p5.keyCode == p5.RIGHT_ARROW:
             self.img1 = p5.loadImage('img_ship.png')
-class Sprite:
+            
+class Sprite: # sprite for asteroids
     def __init__(self, x = 0, y = 0):
         p5.imageMode(p5.CENTER)
         self.x = x  
@@ -311,6 +313,12 @@ def draw():
         p5.textFont(font1, 15)
         p5.text('press SHIFT to replay', 57, 240)
 
+        p5.push()
+        p5.translate(0,0)
+        p5.scale(1.5)
+        p5.image(img1, 100, 65,)
+        p5.pop()
+
     elif(program_state == 'SURVIVED'):
         p5.background(0)  
         p5.textFont(font1, 30)
@@ -320,6 +328,12 @@ def draw():
         p5.text('Total Score:'+ str(score), 63, 238)
         p5.textFont(font1, 15)
         p5.text('press SHIFT to return title', 27, 270)
+
+        p5.push()
+        p5.translate(0,0)
+        p5.scale(1.5)
+        p5.image(img2, 100, 60,)
+        p5.pop()
 
 
 def keyPressed(event):
